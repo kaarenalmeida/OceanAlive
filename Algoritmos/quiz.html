@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+        <div class="logo">
+            <img src="C:\Users\karen\OneDrive\Área de Trabalho\sereionas\icon\logo.png">
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="indexx.html">Início</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="cuidados">Você sabe como contribuir com os cuidados dos nossos oceanos?</div>
+
+    <div id="quiz-container">
+        <div id="question-container"></div>
+        <div id="options-container"></div>
+        <!-- <button onclick="nextQuestion()">Próxima Pergunta</button> -->
+        <p id="score">Pontuação: 0</p>
+    </div>
+    
+    <script>
+        var currentQuestion = 0;
+        var score = 0;
+
+        var questions = [
+            {
+                question: "1. O que você pode fazer para reduzir a poluição por plástico nos oceanos?",
+                options: ["Descartar plásticos no oceano", "Reciclar plásticos", "Queimar plásticos", "Ignorar o problema"],
+                correctAnswer: "Reciclar plásticos"
+            },
+            {
+                question: "2. Qual é uma prática ambientalmente correta ao visitar uma praia?",
+                options: ["Deixar lixo na areia", "Levar conchas e pedras como lembrança", "Fazer fogueiras na areia", "Recolher seu lixo e respeitar a fauna local"],
+                correctAnswer: "Recolher seu lixo e respeitar a fauna local"
+            },
+            {
+                question: "3. Como você pode ajudar a conservar os recifes de coral?",
+                options: ["Despejar produtos químicos nos recifes", "Praticar pesca predatória", "Usar protetor solar que contém produtos químicos nocivos", "Evitar tocar nos corais e usar protetor solar seguro para os recifes"],
+                correctAnswer: "Evitar tocar nos corais e usar protetor solar seguro para os recifes"
+            },
+            {
+                question: "4. Como as atividades humanas podem afetar os níveis de pH nos oceanos?",
+                options: ["Não afetam o pH dos oceanos", "Aumentam a acidez dos oceanos", "Diminuem a salinidade dos oceanos", "Não têm impacto no pH dos oceanos"],
+                correctAnswer: "Aumentam a acidez dos oceanos"
+            },
+            {
+                question: "5. Qual é uma maneira eficaz de conservar a vida marinha?",
+                options: ["Descartar redes de pesca no oceano", "Praticar pesca predatória", "Participar de projetos de limpeza de praias", "Despejar resíduos tóxicos no oceano"],
+                correctAnswer: "Participar de projetos de limpeza de praias"
+            }
+        ];
+
+        function showQuestion() {
+            var questionContainer = document.getElementById("question-container");
+            var optionsContainer = document.getElementById("options-container");
+
+            questionContainer.innerHTML = "";
+            optionsContainer.innerHTML = "";
+
+            questionContainer.innerHTML = questions[currentQuestion].question;
+
+            for (var i = 0; i < questions[currentQuestion].options.length; i++) {
+                var option = document.createElement("button");
+                option.innerHTML = questions[currentQuestion].options[i];
+                option.onclick = checkAnswer;
+                optionsContainer.appendChild(option);
+            }
+        }
+
+        function checkAnswer() {
+            var userAnswer = this.innerHTML;
+
+            if (userAnswer === questions[currentQuestion].correctAnswer) {
+                score++;
+            }
+
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                var quizContainer = document.getElementById("quiz-container");
+                quizContainer.innerHTML = "<h2>Quiz Concluído!</h2><p>Sua pontuação final é: " + score + " de " + questions.length + "</p>";
+            }
+
+            var scoreElement = document.getElementById("score");
+            scoreElement.innerHTML = "Pontuação: " + score;
+        }
+
+        showQuestion();
+    </script>
+    <div class="footer">🧜🏻‍♀️ Criado com amor por Karen Almeida - 2023 🧜🏻‍♀️</div>
+</div>
+</body>
+
+
+</html>
